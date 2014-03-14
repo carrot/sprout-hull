@@ -4,7 +4,7 @@ Utilize the power and speed of [The Roots Framework](http://roots.cx) along with
 
 ## Installation
 
-Grab sprout ya dum dum
+Grab [sprout](https://github.com/carrot/sprout) ya dum dum
 - `npm install sprout -g`
 
 Add this template
