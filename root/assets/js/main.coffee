@@ -11,7 +11,7 @@ require.config
     routefilter: { deps: ['backbone'] }
     hull: { deps: ['jquery'], exports: 'Hull' }
     templates: { exports: 'templates' }
-    facebook: { deps: ['hull'], exports: 'FB' }
+    <%if (include_fb) {%>facebook: { deps: ['hull'], exports: 'FB' }<%}%>
 
   paths:
     jquery: "#{cloudflare}/jquery/2.0.3/jquery.min"
@@ -20,12 +20,12 @@ require.config
     marionette: "#{cloudflare}/backbone.marionette/1.5.1-bundled/backbone.marionette.min"
     hull: '//d3f5pyioow99x0.cloudfront.net/0.8/hull'
     routefilter: '/js/vendor/routefilter'
-    facebook: '//connect.facebook.net/en_US/all'
+    <%if (include_fb) {%>facebook: '//connect.facebook.net/en_US/all'<%}%>
 
     # application
     app: 'application'
 
-require ['app', 'router', 'controller', 'fb'], (App, Router, Controller) ->
+require ['app', 'router', 'controller'<%if (include_fb) {%>, 'fb'<%}%>], (App, Router, Controller) ->
   App.on 'initialize:after', ->
     router = new Router(controller: new Controller)
     App.reqres.setHandler('router', -> router)

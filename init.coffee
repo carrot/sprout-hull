@@ -8,23 +8,32 @@ exports.before = (sprout, done) ->
             \n
             Let's get started:
             """
-  console.log  welcome
+  console.log welcome
   done()
 
 exports.configure = [
-  'Hull_App_Id',
-  'Hull_Org_Url'
+  {
+    type: 'input'
+    name: 'Hull_App_Id'
+    message: 'Enter your Hull App Id'
+  },
+  {
+    type: 'input'
+    name: 'Hull_Org_Url'
+    message: 'Enter your Hull Organization Url'
+  },
+  {
+    type: "confirm"
+    name: "include_fb"
+    message: "Do you want to include the Facebook JS SDK?"
+    default: true
+    # when: (answers) ->
+    #   out = false
+    #   out = true if answers.include_fb
+  }
+
 ]
 
-###
-More config
-
-Ask for platforms (Facebook, Twitter, etc.)
-  - Configuration options for services?
-
-Ask to include Facebook SDK?
-  - Ask for Facebook App credentials
-###
-
 exports.after = (sprout, done) ->
+  console.log sprout.config_values
   done()
