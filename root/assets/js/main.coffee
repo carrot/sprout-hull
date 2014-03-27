@@ -11,13 +11,14 @@ require.config
     templates: { exports: 'templates' }
     <%if (include_fb) {%>facebook: { deps: ['hull'], exports: 'FB' }<%}%>
 
+  # there is an ejs error here!!!!!!
   paths:
     jquery: "#{cloudflare}/jquery/2.0.3/jquery.min"
     <%if (include_backbone) {%>underscore: "#{cloudflare}/underscore.js/1.6.0/underscore-min"<%}%>
     <%if (include_backbone) {%>backbone: "#{cloudflare}/backbone.js/1.1.2/backbone-min"<%}%>
     <%if (include_backbone) {%>marionette: "#{cloudflare}/backbone.marionette/1.5.1-bundled/backbone.marionette.min"<%}%>
     hull: '//d3f5pyioow99x0.cloudfront.net/0.8/hull'
-    <%if (include_backbone) {%>routefilter: '/js/vendor/routefilter'<%}>
+    <%if (include_backbone) {%>routefilter: '/js/vendor/routefilter'<%}%>
     <%if (include_fb) {%>facebook: '//connect.facebook.net/en_US/all'<%}%>
 
     <%if (include_backbone) {%>
