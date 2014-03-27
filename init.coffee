@@ -27,9 +27,13 @@ exports.configure = [
     name: "include_fb"
     message: "Do you want to include the Facebook JS SDK?"
     default: true
-    # when: (answers) ->
-    #   out = false
-    #   out = true if answers.include_fb
+  },
+  {
+    type: 'input'
+    name: 'FB_App_Id'
+    message: "What is the App ID of your FB App?"
+    when: (answers) ->
+      if answers.include_fb then true else false
   }
 
 ]
