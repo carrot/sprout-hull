@@ -57,6 +57,7 @@ exports.configure = [
     type: 'input'
     name: 'title'
     message: 'What is the title of your project?'
+    # validate: -> # TODO validate this cannot be blank
   },
   {
     type: 'input'

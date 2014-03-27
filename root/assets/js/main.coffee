@@ -11,7 +11,6 @@ require.config
     templates: { exports: 'templates' }
     <%if (include_fb) {%>facebook: { deps: ['hull'], exports: 'FB' }<%}%>
 
-  # there is an ejs error here!!!!!!
   paths:
     jquery: "#{cloudflare}/jquery/2.0.3/jquery.min"
     <%if (include_backbone) {%>underscore: "#{cloudflare}/underscore.js/1.6.0/underscore-min"<%}%>
