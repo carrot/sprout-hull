@@ -1,3 +1,43 @@
+# A module specific to cleaning out
+# the files/folders of this project
+
+cleaner = (sprout) ->
+  values = sprout.config_values
+
+  backbone = {
+    files: ['application.coffee', 'controller.coffee', 'router.coffee']
+    folders: ['vendor', 'models']
+  }
+
+  fb = {
+    files: ['fb.coffee']
+  }
+
+  social = {
+    files: ['views/_social_logins.jade']
+  }
+
+  clean_dependencies = (branch, condition) ->
+    unless condition
+      for type, path of branch
+        if type is 'files'
+          for file in branch[type]
+            sprout.remove file
+        else
+          for folder in branch[type]
+            sprout.remove folder
+
+  clean_backbone = -> clean_dependencies(backbone, values.include_backbone)
+  clean_facebook = -> clean_dependencies(fb, values.include_fb)
+  clean_social = -> clean_dependencies(social, values.platforms.length)
+
+  return {
+    cleanup: ->
+      clean_backbone()
+      clean_facebook()
+      clean_social()
+  }
+
 exports.before = (sprout, done) ->
   welcome = """
 
@@ -13,6 +53,11 @@ exports.before = (sprout, done) ->
   done()
 
 exports.configure = [
+  {
+    type: 'input'
+    name: 'title'
+    message: 'What is the title of your project?'
+  },
   {
     type: 'input'
     name: 'Hull_App_Id'
@@ -44,9 +89,17 @@ exports.configure = [
     name: 'FB_App_Id'
     message: "What is the App ID of your FB App?"
     when: (answers) -> if answers.include_fb then true else false
+  },
+  {
+    type: "confirm"
+    name: "include_backbone"
+    message: "Do you want to bootstrap this project with Backbone/Marionette?"
+    default: false
   }
 ]
 
 exports.after = (sprout, done) ->
   console.log sprout.config_values
+  # handle some shiz
+  # cleaner(sprout).cleanup()
   done()
