@@ -13,14 +13,8 @@ html
   body
     h1 Welcome to the Sprout Roots + Hull Template!
 
-    h7 Instruction #1 Header
-    :markdown
-      Donec id elit non mi porta gravida at eget metus. Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo. Etiam porta sem malesuada magna mollis euismod.
+    <%if (platforms.length) {%>include _social_logins<%}%>
 
-    h7 Instruction #2 Header
-    :markdown
-      Donec id elit non mi porta gravida at eget metus. Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo. Etiam porta sem malesuada magna mollis euismod.
-
-      != content
+    != content
 
     script(data-main="/js/main", src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.5/require.min.js")

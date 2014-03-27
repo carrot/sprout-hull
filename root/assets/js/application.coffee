@@ -3,6 +3,9 @@ define ['marionette'], (Marionette) ->
   App = new Marionette.Application()
 
   App.addRegions
-    main: '#main'
+    # <name>: '<jQuery selector>'
+
+    # e.g.
+    # main: '#main'
 
   App

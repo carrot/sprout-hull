@@ -1,0 +1,15 @@
+:markdown
+  ## Social Login(s)
+
+<% for(var i = 0; platforms.length > i; i++) { %>
+<%if (platforms[i] === "Facebook") {%>
+div(data-hull-component="login/button@hull", data-hull-provider="facebook")
+<%} else if (platforms[i] === "Twitter") {%>
+div(data-hull-component="login/button@hull", data-hull-provider="twitter")
+<%} else if (platforms[i] === "GitHub") {%>
+div(data-hull-component="login/button@hull", data-hull-provider="github")
+<%}%>
+<% } %>
+
+:markdown
+  **Note:** If you are not seeing any buttons 
