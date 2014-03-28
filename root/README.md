@@ -1,1 +1,6 @@
-# Detail Your Project Here
+# <%= title %>
+
+## Usage
+
+Rock 'n Roll
+* `roots watch`

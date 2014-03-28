@@ -16,11 +16,5 @@ Add the template
 Initialize
 * `sprout init hull`
 
-## Usage
-
-Rock 'n Roll
-* After answering a few questions from the prompt, your new project will be created!
-* `cd <path/to>/hull && roots watch`
-
 ## Contributing
 * _Coming soon_
