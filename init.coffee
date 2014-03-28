@@ -5,12 +5,11 @@ cleaner = (sprout) ->
   values = sprout.config_values
 
   backbone = {
-    files: ['application.coffee', 'controller.coffee', 'router.coffee']
-    folders: ['vendor', 'models']
+    files: ['assets/js/application.coffee', 'assets/js/controller.coffee', 'assets/js/router.coffee', 'assets/js/vendor/routefilter.js', 'assets/js/models/user.coffee']
   }
 
   fb = {
-    files: ['fb.coffee']
+    files: ['assets/js/fb.coffee']
   }
 
   social = {
@@ -20,12 +19,9 @@ cleaner = (sprout) ->
   clean_dependencies = (branch, condition) ->
     unless condition
       for type, path of branch
-        if type is 'files'
-          for file in branch[type]
-            sprout.remove file
-        else
-          for folder in branch[type]
-            sprout.remove folder
+        for file in branch[type]
+          console.log "removing #{file}..."
+          sprout.remove file
 
   clean_backbone = -> clean_dependencies(backbone, values.include_backbone)
   clean_facebook = -> clean_dependencies(fb, values.include_fb)
@@ -57,7 +53,12 @@ exports.configure = [
     type: 'input'
     name: 'title'
     message: 'What is the title of your project?'
-    # validate: -> # TODO validate this cannot be blank
+    validate: (value) ->
+      if typeof value is "string" && value.length > 4
+        true
+      else
+        "Please enter a value of 5 characters or greater"
+
   },
   {
     type: 'input'
@@ -100,7 +101,5 @@ exports.configure = [
 ]
 
 exports.after = (sprout, done) ->
-  console.log sprout.config_values
-  # handle some shiz
-  # cleaner(sprout).cleanup()
+  cleaner(sprout).cleanup()
   done()

@@ -1,5 +1,5 @@
 :markdown
-  ## Social Login(s)
+  ## Social Login(s) provided by Hull
 
 <% for(var i = 0; platforms.length > i; i++) { %>
 <%if (platforms[i] === "Facebook") {%>
@@ -12,4 +12,6 @@ div(data-hull-component="login/button@hull", data-hull-provider="github")
 <% } %>
 
 :markdown
-  **Note:** If you are not seeing any buttons
+  **Note:** *If you are not seeing login buttons, be sure to check the following:*
+  * Make sure your correct Hull credentials are in `assets/js/config.coffee`.
+  * Refer to [these docs](http://hull.io/docs/references/services) to properly set up your authentication services.
