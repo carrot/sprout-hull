@@ -25,14 +25,18 @@ require.config
     app: 'application'
     <%}%>
 
-require [<%if (include_backbone) {%>'app', 'router', 'controller'<%}%><%if (include_fb) {%>, 'fb'<%}%>], (<%if (include_backbone) {%>App, Router, Controller<%}%>) ->
-  <%if (include_backbone) {%>
-  App.on 'initialize:after', ->
-    router = new Router(controller: new Controller)
-    App.reqres.setHandler('router', -> router)
-    Backbone.history.start(pushState: true)
+<%if (include_backbone) {%>
+  require ['app', 'router', 'controller'<%if (include_fb) {%>, 'fb'<%}%>], (App, Router, Controller) ->
+    App.on 'initialize:after', ->
+      router = new Router(controller: new Controller)
+      App.reqres.setHandler('router', -> router)
+      Backbone.history.start(pushState: true)
 
-  App.start()
-  <%} else {%>
-  console.log "hello from main.coffee!"
-  <%}%>
+    App.start()
+<%} else {%>
+  require ['hull', 'config'], (Hull, config) ->
+    Hull.init config.hull, (hull, me, app, org) ->
+
+    Hull.on 'hull.init', (hull, me, app, org) ->
+      console.log "Hello from main.coffee! Ready to rock!"
+<%}%>
